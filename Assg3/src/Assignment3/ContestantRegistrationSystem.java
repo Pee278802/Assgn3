@@ -126,13 +126,72 @@ public class ContestantRegistrationSystem extends JFrame{
 		panel_1.add(comboBox_Gender);
 		
 		JCheckBox chckbx_TermAndConditions = new JCheckBox("Accept Term And Conditions.");
-		chckbx_TermAndConditions.setBounds(42, 460, 195, 25);
+		chckbx_TermAndConditions.setBounds(40, 447, 195, 25);
 		panel_1.add(chckbx_TermAndConditions);
 		
 		JTextPane textPane_Address = new JTextPane();
 		textPane_Address.setBounds(164, 184, 319, 105);
 		panel_1.add(textPane_Address);
 		
+		JLabel lblRacingType = new JLabel("RACING TYPE");
+		lblRacingType.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lblRacingType.setBounds(40, 302, 114, 25);
+		panel_1.add(lblRacingType);
+		
+		JLabel lbl_Fee = new JLabel("FEE(RM)");
+		lbl_Fee.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
+		lbl_Fee.setBounds(40, 382, 114, 25);
+		panel_1.add(lbl_Fee);
+		
+		JLabel lbl_Fee1 = new JLabel("");
+		lbl_Fee1.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
+		lbl_Fee1.setBounds(164, 384, 187, 25);
+		panel_1.add(lbl_Fee1);
+		
+		JComboBox comboBox_RacingType = new JComboBox();
+		comboBox_RacingType.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//int Fee = comboBox_RacingType.getSelectedIndex();
+				if (comboBox_RacingType.getSelectedIndex() == 1) {
+					lbl_Fee1.setText("250000");
+				} else if
+				(comboBox_RacingType.getSelectedIndex() == 1) {
+					lbl_Fee1.setText("430000");
+				} else if 
+				(comboBox_RacingType.getSelectedIndex() == 1) {
+					lbl_Fee1.setText("210000");
+				} else {
+					lbl_Fee1.setText("1450000");
+				}
+			}
+		});
+		comboBox_RacingType.setModel(new DefaultComboBoxModel(new String[] {"Select Racing Type", "Formula Racing", "Sport Car Racing", "Stock Car Racing", "Drag Car Racing"}));
+		comboBox_RacingType.setBounds(164, 302, 187, 28);
+		panel_1.add(comboBox_RacingType);
+		
+		JLabel lbl_CarProvided = new JLabel("CAR PROVIDED");
+		lbl_CarProvided.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lbl_CarProvided.setBounds(40, 344, 114, 25);
+		panel_1.add(lbl_CarProvided);
+		
+		
+		JComboBox comboBox_CarProvided = new JComboBox();
+		comboBox_CarProvided.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (comboBox_RacingType.getSelectedIndex() == 1) {
+					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Select Car", "Alfa Romeo Ferrari C39 (Formula)", "Renault RS20 (Formula)", "Racing Point BWT Mercedes RP20 (Formula)"	}));
+				}else if (comboBox_RacingType.getSelectedIndex() == 2) {
+					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Williams Mercedes FW43 (Sport)", "Porsche 911 (Sport)", "Alpine A110 (Sport)", "Porsche 718 Boxster/Cayman (Sport)", "McLaren 570S (Sport)"}));
+				}else if (comboBox_RacingType.getSelectedIndex() == 3) {
+					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Declasse Burger Shot Stallion (Stock)", "Bravado Redwood Gauntlet (Stock)", "Vapid Pisswasser Dominator (Stock)", "Bravado Sprunk Buffalo (Stock)"}));
+				}else {
+					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Chevrolet Camaro ZL1 (Drag)", "Buick Grand National GNX (Drag)", "Chevrolet Corvette C7 Z06 (Drag)", "Mustang GT500 (Drag)", "Chevrolet Nova (Drag)"}));
+				}
+				comboBox_CarProvided.setBounds(164, 343, 187, 28);
+				panel_1.add(comboBox_CarProvided);
+		}});
+;
+				
 		JButton btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		btnReset.addActionListener(new ActionListener() {
@@ -142,7 +201,7 @@ public class ContestantRegistrationSystem extends JFrame{
 					textField_ICNo.setText("");
 					comboBox_Gender.setSelectedItem("Select gender");
 					textPane_Address.setText("");
-					
+					lbl_Fee1.setText("");
 			}
 		});
 		btnReset.setBounds(40, 494, 165, 37);
@@ -157,10 +216,10 @@ public class ContestantRegistrationSystem extends JFrame{
 						model.addRow(new Object[]{
 								textField_Name.getText(),
 								textField_MobileNo.getText(),
-								textField_ICNo.getText(),
 								comboBox_Gender.getSelectedItem(),
+								textField_ICNo.getText(),
 								textPane_Address.getText(),
-								
+								lbl_Fee1.getText(),
 						});
 						
 					}else {
@@ -169,10 +228,6 @@ public class ContestantRegistrationSystem extends JFrame{
 					}
 		}else if (e.getSource() == btnReset) {
 	};
-				
-
-			
-
 			}});
 			
 		btnSubmit.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -206,7 +261,7 @@ public class ContestantRegistrationSystem extends JFrame{
 			new Object[][] {
 			},
 			new String[] {
-				"NAME", "MOBILE NO", "GENDER", "IC No", "ADDRESS", "FEE"
+				"NAME", "MOBILE NO", "GENDER", "IC NO", "ADDRESS", "FEE"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -237,29 +292,9 @@ public class ContestantRegistrationSystem extends JFrame{
 		btn_Refund.setBounds(272, 494, 165, 37);
 		panel_1.add(btn_Refund);
 		
-		JLabel lblRacingType = new JLabel("Racing Type");
-		lblRacingType.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblRacingType.setBounds(40, 302, 114, 25);
-		panel_1.add(lblRacingType);
-		
-		JComboBox comboBox_RacingType = new JComboBox();
-		comboBox_RacingType.setModel(new DefaultComboBoxModel(new String[] {"Select Racing Type", "Formula Racing", "Sport Car Racing", "Stock Car Racing", "Drag Car Racing"}));
-		comboBox_RacingType.setBounds(164, 302, 187, 28);
-		panel_1.add(comboBox_RacingType);
-		
-		JLabel lblRacingType_1 = new JLabel("Car Provided");
-		lblRacingType_1.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
-		lblRacingType_1.setBounds(40, 344, 114, 25);
-		panel_1.add(lblRacingType_1);
-		
-		JComboBox comboBox_CarProvided = new JComboBox();
-		comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Select Car", "Alfa Romeo Ferrari C39 (Formula)", "Renault RS20 (Formula)", "Racing Point BWT Mercedes RP20 (Formula)", "Williams Mercedes FW43 (Sport)", "Porsche 911 (Sport)", "Alpine A110 (Sport)", "Porsche 718 Boxster/Cayman (Sport)", "McLaren 570S (Sport)", "Declasse Burger Shot Stallion (Stock)", "Bravado Redwood Gauntlet (Stock)", "Vapid Pisswasser Dominator (Stock)", "Bravado Sprunk Buffalo (Stock)", "Chevrolet Camaro ZL1 (Drag)", "Buick Grand National GNX (Drag)", "Chevrolet Corvette C7 Z06 (Drag)", "Mustang GT500 (Drag)", "Chevrolet Nova (Drag)", "", "", ""}));
-		comboBox_CarProvided.setBounds(164, 343, 187, 28);
-		panel_1.add(comboBox_CarProvided);
 		
 		
 		
 
 	}
-
 }

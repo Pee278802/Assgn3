@@ -140,7 +140,7 @@ public class AudienceRegistrationSystem extends JFrame{
 		JLabel lblFee_1 = new JLabel("");
 		lblFee_1.setText(Integer.toString(499));
 		lblFee_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lblFee_1.setBounds(174, 353, 114, 25);
+		lblFee_1.setBounds(164, 353, 114, 25);
 		panel_1.add(lblFee_1);
 		
 		JButton btnReset = new JButton("RESET");
@@ -152,7 +152,7 @@ public class AudienceRegistrationSystem extends JFrame{
 					textField_ICNo.setText("");
 					comboBox_Gender.setSelectedItem("Select gender");
 					textPane_Address.setText("");
-					
+					lblFee_1.setText(" ");		
 			}
 		});
 		btnReset.setBounds(40, 432, 165, 37);
