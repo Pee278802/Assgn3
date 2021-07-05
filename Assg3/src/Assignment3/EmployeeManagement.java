@@ -133,6 +133,9 @@ public class EmployeeManagement extends JFrame{
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
+				{"Raymond", "011-132213122", "000123-12-1233", "Manager"},
+				{"Ali", "012-14235132", "000321-32-3212", "Assistant"},
+				{"Terence", "013-4457890", "98231-23-4231", "Admin"},
 			},
 			new String[] {
 				"Name", "Contract No", "IC No", "Position", "Salary"
@@ -177,11 +180,6 @@ public class EmployeeManagement extends JFrame{
 		btn_Reset.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		btn_Reset.setBounds(192, 328, 133, 36);
 		panel.add(btn_Reset);
-		
-		JButton btn_Search = new JButton("SEARCH");
-		btn_Search.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		btn_Search.setBounds(192, 402, 133, 36);
-		panel.add(btn_Search);
 		
 		JButton btn_Back = new JButton("BACK");
 		btn_Back.addActionListener(new ActionListener() {
