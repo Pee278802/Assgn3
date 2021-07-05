@@ -17,7 +17,7 @@ import javax.swing.JEditorPane;
 
 public class Home extends JFrame{
 
-	private JFrame frame;
+	JFrame frmProMotorsport;
 
 	/**
 	 * Launch the application.
@@ -27,7 +27,7 @@ public class Home extends JFrame{
 			public void run() {
 				try {
 					Home window = new Home();
-					window.frame.setVisible(true);
+					window.frmProMotorsport.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,16 +46,18 @@ public class Home extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(224, 255, 255));
-		frame.setBounds(100, 100, 867, 513);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmProMotorsport = new JFrame();
+		frmProMotorsport.setTitle("Pro MotorSport");
+		frmProMotorsport.getContentPane().setBackground(new Color(224, 255, 255));
+		setTitle("Pro MotorSport");
+		frmProMotorsport.setBounds(100, 100, 867, 513);
+		frmProMotorsport.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmProMotorsport.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(72, 61, 139));
 		panel.setBounds(12, 13, 825, 65);
-		frame.getContentPane().add(panel);
+		frmProMotorsport.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lbl_CompanyName = new JLabel("PRO MOTORSPORT ENTERPRISE");
@@ -68,7 +70,7 @@ public class Home extends JFrame{
 		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(72, 61, 139));
 		panel_1.setBounds(12, 388, 825, 65);
-		frame.getContentPane().add(panel_1);
+		frmProMotorsport.getContentPane().add(panel_1);
 		
 		JButton btn_CompanyDetail = new JButton("COMPANY DETAIL");
 		btn_CompanyDetail.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -76,14 +78,6 @@ public class Home extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				CompanyDetail frame = new CompanyDetail();
 				frame.setVisible(true);
-				
-				}
-
-			private void toBack() {
-				this.toBack();
-				CompanyDetail newFrame = new CompanyDetail();
-				newFrame.setVisible(true);
-				newFrame.toFront();				
 				
 			}
 		});
@@ -93,14 +87,10 @@ public class Home extends JFrame{
 		JButton btn_Register = new JButton("REGISTER");
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerRegisterMenu window = new CustomerRegisterMenu();
-				window.frame.setVisible(true);
-			}
-			private void toBack() {
-				this.toBack();
-				CustomerRegisterMenu newFrame = new CustomerRegisterMenu();
-				newFrame.setVisible(true);
-				newFrame.toFront();	
+				CustomerRegisterMenu frame = new CustomerRegisterMenu();
+				frame.setModalExclusionType(null);
+	            frame.setVisible(true);
+	            dispose();
 			}
 		});
 		btn_Register.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -110,14 +100,8 @@ public class Home extends JFrame{
 		JButton btn_Login = new JButton("LOGIN");
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Login window = new Login();
-				window.frame.setVisible(true);
-			}
-			private void toBack() {
-				this.toBack();
-				Login newWindow = new Login();
-				newWindow.setVisible(true);
-				newWindow.toFront();	
+				Login frame = new Login();
+				frame.setVisible(true);
 			}
 		});
 		btn_Login.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -127,10 +111,9 @@ public class Home extends JFrame{
 		JButton btn_Exit = new JButton("EXIT");
 		btn_Exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Membership Registration System", 
+				if (JOptionPane.showConfirmDialog(frmProMotorsport, "Confirm if you want to exit", "Membership Registration System", 
 						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
 					System.exit(0);
-				System.exit(0);
 				}
 			}
 		});
@@ -141,7 +124,7 @@ public class Home extends JFrame{
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(72, 61, 139));
 		panel_1_1.setBounds(12, 91, 825, 284);
-		frame.getContentPane().add(panel_1_1);
+		frmProMotorsport.getContentPane().add(panel_1_1);
 		panel_1_1.setLayout(null);
 		
 		JEditorPane dtrpnEntry = new JEditorPane();

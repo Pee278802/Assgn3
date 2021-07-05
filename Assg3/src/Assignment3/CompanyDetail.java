@@ -181,15 +181,7 @@ public class CompanyDetail extends JFrame{
 		JButton btn_Back = new JButton("BACK");
 		btn_Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				this.toBack();
-				setVisible(false);
-				new Home().toFront();
-				new Home().setState(java.awt.Frame.NORMAL);
-			}
-
-			private void toBack() {
-				// TODO Auto-generated method stub
-				
+				dispose();
 			}
 		});
 		btn_Back.setFont(new Font("Trebuchet MS", Font.BOLD, 20));

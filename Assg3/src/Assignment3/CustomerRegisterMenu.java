@@ -1,18 +1,23 @@
 package Assignment3;
 
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JButton;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class CustomerRegisterMenu extends JFrame{
 
-	JFrame frame;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -21,8 +26,8 @@ public class CustomerRegisterMenu extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerRegisterMenu window = new CustomerRegisterMenu();
-					window.frame.setVisible(true);
+					CustomerRegisterMenu frame = new CustomerRegisterMenu();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -31,32 +36,27 @@ public class CustomerRegisterMenu extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public CustomerRegisterMenu() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 456, 294);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(102, 102, 255));
-		panel.setBounds(0, 0, 432, 253);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 438, 253);
+		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JButton btnAudience = new JButton("AUDIENCE");
 		btnAudience.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AudienceRegistrationSystem window = new AudienceRegistrationSystem();
-				window.frame.setVisible(true);
+				AudienceRegistrationSystem frame = new AudienceRegistrationSystem();
+				frame.setVisible(true);
 			}
 		});
 		btnAudience.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
@@ -66,12 +66,23 @@ public class CustomerRegisterMenu extends JFrame{
 		JButton btnContestant = new JButton("CONTESTANT");
 		btnContestant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ContestantRegistrationSystem window = new ContestantRegistrationSystem();
-				window.frame.setVisible(true);
+				ContestantRegistrationSystem frame = new ContestantRegistrationSystem();
+				frame.setVisible(true);
 			}
 		});
 		btnContestant.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
 		btnContestant.setBounds(237, 79, 183, 56);
 		panel.add(btnContestant);
+		
+		JButton btnBack = new JButton("BACK");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		btnBack.setBounds(147, 181, 141, 41);
+		panel.add(btnBack);
+
 	}
 }

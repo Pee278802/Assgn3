@@ -1,33 +1,35 @@
 package Assignment3;
-
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableModel;
+
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JScrollPane;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class EmployeeManagement extends JFrame{
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField textField_Name;
 	private JTextField textField_ContractNo;
 	private JTextField textField_ICNo;
 	private JTextField textField_Position;
 	private JTextField textField_Salary;
 	private JTable table;
-
 	/**
 	 * Launch the application.
 	 */
@@ -35,8 +37,8 @@ public class EmployeeManagement extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EmployeeManagement window = new EmployeeManagement();
-					window.frame.setVisible(true);
+					EmployeeManagement frame = new EmployeeManagement();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,26 +47,22 @@ public class EmployeeManagement extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
-	public EmployeeManagement() {
-		initialize();
-	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1138, 606);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public EmployeeManagement() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1159, 621);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 128));
 		panel.setForeground(new Color(0, 0, 0));
 		panel.setBounds(0, 0, 1120, 559);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblEmployeeManagement = new JLabel("Employee Management");
@@ -187,12 +185,13 @@ public class EmployeeManagement extends JFrame{
 		
 		JButton btn_Back = new JButton("BACK");
 		btn_Back.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				frame = new JFrame();
-				if (JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Employee Registration System",
-								JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
-					System.exit(0);
-				}
+			public void actionPerformed(ActionEvent arg0) {
+				this.toBack();
+				setVisible(false);
+
+			}
+			private void toBack() {
+				
 			}
 		});
 

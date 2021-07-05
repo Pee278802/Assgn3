@@ -1,5 +1,6 @@
 package Assignment3;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -18,19 +19,17 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
-public class ContestantRegistrationSystem extends JFrame{
+public class ContestantRegistrationSystem extends JFrame {
 
-	JFrame frame;
+	private JPanel contentPane;
 	private JTextField textField_Name;
 	private JTextField textField_MobileNo;
 	private JTable table;
 	private JTextField textField_ICNo;
-
 	/**
 	 * Launch the application.
 	 */
@@ -38,8 +37,8 @@ public class ContestantRegistrationSystem extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContestantRegistrationSystem window = new ContestantRegistrationSystem();
-					window.frame.setVisible(true);
+					ContestantRegistrationSystem frame = new ContestantRegistrationSystem();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -48,28 +47,22 @@ public class ContestantRegistrationSystem extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public ContestantRegistrationSystem() {
-		initialize();
-		
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1305, 732);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1302, 761);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setForeground(new Color(128, 0, 0));
 		panel.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(32, 178, 170)));
 		panel.setBackground(new Color(255, 250, 205));
 		panel.setBounds(12, 13, 1263, 75);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblRegistration = new JLabel("Contestant Registration System");
@@ -81,8 +74,8 @@ public class ContestantRegistrationSystem extends JFrame{
 		panel_1.setForeground(new Color(128, 0, 0));
 		panel_1.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(153, 50, 204)));
 		panel_1.setBackground(new Color(192, 192, 192));
-		panel_1.setBounds(12, 91, 1263, 594);
-		frame.getContentPane().add(panel_1);
+		panel_1.setBounds(12, 91, 1263, 610);
+		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name");
@@ -296,5 +289,7 @@ public class ContestantRegistrationSystem extends JFrame{
 		
 		
 
+
 	}
+
 }

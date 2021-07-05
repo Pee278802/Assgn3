@@ -1,20 +1,22 @@
 package Assignment3;
-
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Login extends JFrame{
 
-	JFrame frame;
+	private JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -23,8 +25,8 @@ public class Login extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login window = new Login();
-					window.frame.setVisible(true);
+					Login frame = new Login();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -33,26 +35,21 @@ public class Login extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public Login() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 706, 533);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 699, 529);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(135, 206, 235));
 		panel.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(0, 0, 255)));
 		panel.setBounds(0, 0, 688, 486);
-		frame.getContentPane().add(panel);
+		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblLoginAs = new JLabel("Login as:");
@@ -63,7 +60,7 @@ public class Login extends JFrame{
 		JButton btnEmployee = new JButton("EMPLOYEE");
 		btnEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Employee frame = new Employee();
+				EmployeeLogin frame = new EmployeeLogin();
 				frame.setVisible(true);
 			}
 		});
@@ -74,7 +71,7 @@ public class Login extends JFrame{
 		JButton btnCustomer = new JButton("CUSTOMER");
 		btnCustomer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Customer frame = new Customer();
+				CustomerLogin frame = new CustomerLogin();
 				frame.setVisible(true);
 			}
 		});
@@ -85,20 +82,13 @@ public class Login extends JFrame{
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				this.toBack();
-				setVisible(false);
-				new Home().toFront();
-				new Home().setState(java.awt.Frame.NORMAL);
-				
-			}
-			private void toBack() {
-				// TODO Auto-generated method stub
-				
+				dispose();
+
 			}
 		});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		btnBack.setBounds(12, 432, 127, 41);
 		panel.add(btnBack);
+		
 	}
-
 }

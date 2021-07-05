@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
@@ -22,7 +23,7 @@ import java.awt.event.ActionEvent;
 
 public class AdvertisementAndMarketing extends JFrame{
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField textField_Description;
 	private JTextField textField_Start;
 	private JTextField textField_End;
@@ -35,8 +36,8 @@ public class AdvertisementAndMarketing extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdvertisementAndMarketing window = new AdvertisementAndMarketing();
-					window.frame.setVisible(true);
+					AdvertisementAndMarketing frame = new AdvertisementAndMarketing();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -55,15 +56,17 @@ public class AdvertisementAndMarketing extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 1020, 637);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1002, 629);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 139, 139));
-		panel.setBounds(12, 0, 990, 590);
-		frame.getContentPane().add(panel);
+		panel.setBounds(0, 0, 990, 590);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -136,14 +139,8 @@ public class AdvertisementAndMarketing extends JFrame{
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					this.toBack2();
-					setVisible(false);
-					new AdvertisementAndMarketing().toFront();
-					new AdvertisementAndMarketing().setState(java.awt.Frame.NORMAL);
-				}
-				private void toBack2() {
-					// TODO Auto-generated method stub
-					
+					dispose();
+
 				}
 			});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 25));

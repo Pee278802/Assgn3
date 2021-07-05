@@ -1,24 +1,26 @@
 package Assignment3;
-
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import javax.swing.JTextField;
-import java.awt.Color;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Finance extends JFrame{
 
-	private JFrame frame;
+	private JPanel contentPane;
 	private JTextField textField_totalRevenue;
-	private JTextField textField_netIncome;
 	private JTextField textField_totalSalary;
 	private JTextField textField_totalExpense;
 
@@ -29,8 +31,8 @@ public class Finance extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Finance window = new Finance();
-					window.frame.setVisible(true);
+					Finance frame = new Finance();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -39,24 +41,21 @@ public class Finance extends JFrame{
 	}
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
-
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	public Finance () {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 757, 503);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public Finance() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 696, 540);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 239, 213));
 		panel.setForeground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 739, 465);
-		frame.getContentPane().add(panel);
+		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lbl_Finance = new JLabel("FINANCE");
@@ -79,20 +78,15 @@ public class Finance extends JFrame{
 		lbl_TotalExpense.setBounds(130, 215, 225, 36);
 		panel.add(lbl_TotalExpense);
 		
-		JLabel lblTotalRevenue_1_2_1 = new JLabel("NET INCOME (RM)");
-		lblTotalRevenue_1_2_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
-		lblTotalRevenue_1_2_1.setBounds(130, 337, 225, 36);
-		panel.add(lblTotalRevenue_1_2_1);
+		JLabel lblNetIncome = new JLabel("NET INCOME (RM)");
+		lblNetIncome.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
+		lblNetIncome.setBounds(130, 337, 225, 36);
+		panel.add(lblNetIncome);
 		
 		textField_totalRevenue = new JTextField();
 		textField_totalRevenue.setBounds(365, 85, 225, 36);
 		panel.add(textField_totalRevenue);
 		textField_totalRevenue.setColumns(10);
-		
-		textField_netIncome = new JTextField();
-		textField_netIncome.setColumns(10);
-		textField_netIncome.setBounds(365, 341, 225, 36);
-		panel.add(textField_netIncome);
 		
 		textField_totalSalary = new JTextField();
 		textField_totalSalary.setColumns(10);
@@ -104,15 +98,21 @@ public class Finance extends JFrame{
 		textField_totalExpense.setBounds(367, 215, 225, 36);
 		panel.add(textField_totalExpense);
 		
+		JLabel lbl_NetIncome1 = new JLabel("");
+		lbl_NetIncome1.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 25));
+		lbl_NetIncome1.setBounds(367, 340, 225, 33);
+		panel.add(lbl_NetIncome1);
+		
 		JButton btnNewButton = new JButton("Calculate");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int totalRevenue,totalSalary,totalExpense,netIncome;
+				int totalRevenue,totalSalary,totalExpense,netIncome = 0;
 				try {
 					totalRevenue =Integer.parseInt(textField_totalRevenue.getText());
 					totalSalary =Integer.parseInt(textField_totalSalary.getText());
 					totalExpense =Integer.parseInt(textField_totalExpense.getText());
 					netIncome = totalRevenue - totalSalary - totalExpense;
+					lbl_NetIncome1.setText(Integer.toString(netIncome));
 				}catch (Exception e) {
 						JOptionPane.showMessageDialog(null, "Please Enter Valid Number");
 				}
@@ -127,8 +127,8 @@ public class Finance extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				this.toBack();
 				setVisible(false);
-				new Home().toFront();
-				new Home().setState(java.awt.Frame.NORMAL);
+				new EmployeeManagement().toFront();
+				new EmployeeManagement().setState(java.awt.Frame.NORMAL);
 			}
 
 			private void toBack() {
@@ -139,5 +139,6 @@ public class Finance extends JFrame{
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		btnBack.setBounds(12, 401, 165, 37);
 		panel.add(btnBack);
+
 	}
 }
