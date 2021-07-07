@@ -128,7 +128,7 @@ public class CompanyDetail extends JFrame{
 		JLabel lbl_Requirement1 = new JLabel("  2. Good Healt Situation");
 		lbl_Requirement1.setForeground(Color.BLUE);
 		lbl_Requirement1.setFont(new Font("Times New Roman", Font.BOLD, 15));
-		lbl_Requirement1.setBounds(144, 183, 348, 24);
+		lbl_Requirement1.setBounds(144, 171, 348, 24);
 		panel_2.add(lbl_Requirement1);
 		
 		JLabel lbl_BusinessHours = new JLabel(": MON 10A.M. - 9P.M.");
@@ -191,10 +191,22 @@ public class CompanyDetail extends JFrame{
 		lbl_type4.setBounds(144, 415, 318, 24);
 		panel_2.add(lbl_type4);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\raymo\\OneDrive\\Desktop\\16518.jpg"));
-		lblNewLabel_1.setBounds(12, 13, 802, 419);
-		panel_2.add(lblNewLabel_1);
+		JLabel lbl_Background = new JLabel("");
+		lbl_Background.setIcon(new ImageIcon("C:\\Users\\raymo\\OneDrive\\Desktop\\16518.jpg"));
+		lbl_Background.setBounds(12, 8, 802, 431);
+		panel_2.add(lbl_Background);
+		
+		JLabel lbl_CompanyRequirement_1 = new JLabel("Founded");
+		lbl_CompanyRequirement_1.setForeground(Color.BLUE);
+		lbl_CompanyRequirement_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lbl_CompanyRequirement_1.setBounds(12, 189, 113, 24);
+		panel_2.add(lbl_CompanyRequirement_1);
+		
+		JLabel lbl_Requirement_1 = new JLabel(": 20 May 2019");
+		lbl_Requirement_1.setForeground(Color.BLUE);
+		lbl_Requirement_1.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		lbl_Requirement_1.setBounds(144, 193, 348, 24);
+		panel_2.add(lbl_Requirement_1);
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setLayout(null);
