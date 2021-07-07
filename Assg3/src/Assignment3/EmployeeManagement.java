@@ -133,12 +133,16 @@ public class EmployeeManagement extends JFrame{
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Raymond", "011-132213122", "000123-12-1233", "Manager"},
-				{"Ali", "012-14235132", "000321-32-3212", "Assistant"},
-				{"Terence", "013-4457890", "98231-23-4231", "Admin"},
+				{"Raymond", "011-132213122", "000123-12-1233", "Manager", "10000.00"},
+				{"Ali", "012-14235132", "000321-32-3212", "Assistant", "2000.00"},
+				{"Terence", "013-4457890", "98231-23-4231", "Admin", "4000.00"},
+				{"Bi", "011-11231412", "971231-12-32123", "Line Stiper","5000.00"},
+				{"Raygor", "019-7708877", "920415-01-3210", "Vehicle Paint Sprayer", "7000.00"},
+				{"Jay", "017-7730121", "900123-04-3222", "Security", "4000.00"},
+				{"Lawrance", "011-204321244", "921101-04-0221", "Maintanance manager", "10000.00"}
 			},
 			new String[] {
-				"Name", "Contract No", "IC No", "Position", "Salary"
+				"Name", "Contract No", "IC No", "Position", "Salary (RM)"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -154,12 +158,10 @@ public class EmployeeManagement extends JFrame{
 								textField_Position.getText(),
 								textField_Salary.getText(),
 				});
-		
-				if (table.getSelectedRow() == -1) {
 						if (table.getRowCount() == 0) {
 								JOptionPane.showMessageDialog(null, "Employee Update Confirmed", "Employee Management System",
 												JOptionPane.OK_OPTION);
-					}
+
 				}
 				}
 		});
@@ -178,23 +180,20 @@ public class EmployeeManagement extends JFrame{
 			}
 		});
 		btn_Reset.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		btn_Reset.setBounds(192, 328, 133, 36);
+		btn_Reset.setBounds(187, 328, 133, 36);
 		panel.add(btn_Reset);
 		
 		JButton btn_Back = new JButton("BACK");
 		btn_Back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				this.toBack();
-				setVisible(false);
-
-			}
-			private void toBack() {
-				
+				EmployeeSystem frame = new EmployeeSystem();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
 
 		btn_Back.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		btn_Back.setBounds(12, 482, 133, 36);
+		btn_Back.setBounds(12, 510, 133, 36);
 		panel.add(btn_Back);
 		
 		JButton btn_Delete = new JButton("DELETE");
@@ -215,8 +214,22 @@ public class EmployeeManagement extends JFrame{
 			}
 		});
 		btn_Delete.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		btn_Delete.setBounds(12, 402, 133, 36);
+		btn_Delete.setBounds(12, 395, 133, 36);
 		panel.add(btn_Delete);
+		
+		JButton btn_Print = new JButton("PRINT");
+		btn_Print.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					table.print();
+				} catch (java.awt.print.PrinterException ee) {
+					System.err.format("No printer found", ee.getMessage());
+				}
+			}
+		});
+		btn_Print.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		btn_Print.setBounds(187, 395, 133, 36);
+		panel.add(btn_Print);
 	}
 
 }

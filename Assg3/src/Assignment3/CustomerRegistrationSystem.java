@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -23,7 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class ContestantRegistrationSystem extends JFrame {
+public class CustomerRegistrationSystem extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField_Name;
@@ -37,7 +40,7 @@ public class ContestantRegistrationSystem extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContestantRegistrationSystem frame = new ContestantRegistrationSystem();
+					CustomerRegistrationSystem frame = new CustomerRegistrationSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +52,7 @@ public class ContestantRegistrationSystem extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ContestantRegistrationSystem() {
+	public CustomerRegistrationSystem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1302, 761);
 		contentPane = new JPanel();
@@ -60,12 +63,12 @@ public class ContestantRegistrationSystem extends JFrame {
 		JPanel panel = new JPanel();
 		panel.setForeground(new Color(128, 0, 0));
 		panel.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(32, 178, 170)));
-		panel.setBackground(new Color(255, 250, 205));
+		panel.setBackground(Color.BLUE);
 		panel.setBounds(12, 13, 1263, 75);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblRegistration = new JLabel("Contestant Registration System");
+		JLabel lblRegistration = new JLabel("Customer Registration System");
 		lblRegistration.setFont(new Font("Verdana", Font.BOLD, 25));
 		lblRegistration.setBounds(377, 13, 509, 49);
 		panel.add(lblRegistration);
@@ -73,7 +76,7 @@ public class ContestantRegistrationSystem extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setForeground(new Color(128, 0, 0));
 		panel_1.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(153, 50, 204)));
-		panel_1.setBackground(new Color(192, 192, 192));
+		panel_1.setBackground(Color.BLUE);
 		panel_1.setBounds(12, 91, 1263, 610);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -136,10 +139,21 @@ public class ContestantRegistrationSystem extends JFrame {
 		lbl_Fee.setBounds(40, 382, 114, 25);
 		panel_1.add(lbl_Fee);
 		
+		
+		JLabel lbl_CarProvided = new JLabel("CAR PROVIDED");
+		lbl_CarProvided.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		lbl_CarProvided.setBounds(40, 344, 114, 25);
+		panel_1.add(lbl_CarProvided);
+		
+		JComboBox comboBox_ProvidedCar = new JComboBox();
+		comboBox_ProvidedCar.setBounds(164, 343, 187, 28);
+		panel_1.add(comboBox_ProvidedCar);
+		
 		JLabel lbl_Fee1 = new JLabel("");
 		lbl_Fee1.setFont(new Font("Trebuchet MS", Font.BOLD, 18));
 		lbl_Fee1.setBounds(164, 384, 187, 25);
 		panel_1.add(lbl_Fee1);
+		
 		
 		JComboBox comboBox_RacingType = new JComboBox();
 		comboBox_RacingType.addActionListener(new ActionListener() {
@@ -147,43 +161,47 @@ public class ContestantRegistrationSystem extends JFrame {
 				//int Fee = comboBox_RacingType.getSelectedIndex();
 				if (comboBox_RacingType.getSelectedIndex() == 1) {
 					lbl_Fee1.setText("250000");
+					comboBox_ProvidedCar.setSelectedItem("Select a vehicle");
+					comboBox_ProvidedCar.addItem("Alfa Romeo Ferrari C39");
+					comboBox_ProvidedCar.addItem("Renault RS20 ");
+					comboBox_ProvidedCar.addItem("Racing Point BWT Mercedes RP20");
+					comboBox_ProvidedCar.addItem("Williams Mercedes FW43 (Sport");
+					
 				} else if
-				(comboBox_RacingType.getSelectedIndex() == 1) {
+				(comboBox_RacingType.getSelectedIndex() == 2) {
 					lbl_Fee1.setText("430000");
+					comboBox_ProvidedCar.setSelectedItem("Select a vehicle");
+					comboBox_ProvidedCar.addItem("Porsche 718 Boxster/Cayman");
+					comboBox_ProvidedCar.addItem("Porsche 911 ");
+					comboBox_ProvidedCar.addItem("Alpine A110");
+					comboBox_ProvidedCar.addItem("McLaren 570S ");
+					
 				} else if 
-				(comboBox_RacingType.getSelectedIndex() == 1) {
+				(comboBox_RacingType.getSelectedIndex() == 3) {
 					lbl_Fee1.setText("210000");
-				} else {
+					comboBox_ProvidedCar.setSelectedItem("Select a vehicle");
+					comboBox_ProvidedCar.addItem("Bravado Redwood Gauntlet ");
+					comboBox_ProvidedCar.addItem("Vapid Pisswasser Dominator ");
+					comboBox_ProvidedCar.addItem("Bravado Sprunk Buffalo ");
+					comboBox_ProvidedCar.addItem("Declasse Burger Shot Stallion ");
+					
+				} else if
+				(comboBox_RacingType.getSelectedIndex() == 4) {
 					lbl_Fee1.setText("1450000");
+					comboBox_RacingType.setSelectedItem("Select a vehicle");
+					comboBox_ProvidedCar.addItem("Chevrolet Camaro ZL1 ");
+					comboBox_ProvidedCar.addItem("Buick Grand National GNX");
+					comboBox_ProvidedCar.addItem("Chevrolet Corvette C7 Z06 ");
+					comboBox_ProvidedCar.addItem("Mustang GT500 ");
+					comboBox_ProvidedCar.addItem("Chevrolet Nova ");
+					
+					
 				}
 			}
 		});
 		comboBox_RacingType.setModel(new DefaultComboBoxModel(new String[] {"Select Racing Type", "Formula Racing", "Sport Car Racing", "Stock Car Racing", "Drag Car Racing"}));
 		comboBox_RacingType.setBounds(164, 302, 187, 28);
 		panel_1.add(comboBox_RacingType);
-		
-		JLabel lbl_CarProvided = new JLabel("CAR PROVIDED");
-		lbl_CarProvided.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
-		lbl_CarProvided.setBounds(40, 344, 114, 25);
-		panel_1.add(lbl_CarProvided);
-		
-		
-		JComboBox comboBox_CarProvided = new JComboBox();
-		comboBox_CarProvided.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (comboBox_RacingType.getSelectedIndex() == 1) {
-					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Select Car", "Alfa Romeo Ferrari C39 (Formula)", "Renault RS20 (Formula)", "Racing Point BWT Mercedes RP20 (Formula)"	}));
-				}else if (comboBox_RacingType.getSelectedIndex() == 2) {
-					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Williams Mercedes FW43 (Sport)", "Porsche 911 (Sport)", "Alpine A110 (Sport)", "Porsche 718 Boxster/Cayman (Sport)", "McLaren 570S (Sport)"}));
-				}else if (comboBox_RacingType.getSelectedIndex() == 3) {
-					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Declasse Burger Shot Stallion (Stock)", "Bravado Redwood Gauntlet (Stock)", "Vapid Pisswasser Dominator (Stock)", "Bravado Sprunk Buffalo (Stock)"}));
-				}else {
-					comboBox_CarProvided.setModel(new DefaultComboBoxModel(new String[] {"Chevrolet Camaro ZL1 (Drag)", "Buick Grand National GNX (Drag)", "Chevrolet Corvette C7 Z06 (Drag)", "Mustang GT500 (Drag)", "Chevrolet Nova (Drag)"}));
-				}
-				comboBox_CarProvided.setBounds(164, 343, 187, 28);
-				panel_1.add(comboBox_CarProvided);
-		}});
-;
 				
 		JButton btnReset = new JButton("RESET");
 		btnReset.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -230,15 +248,9 @@ public class ContestantRegistrationSystem extends JFrame {
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				this.toBack();
-				setVisible(false);
-				new Home().toFront();
-				new Home().setState(java.awt.Frame.NORMAL);
-			}
-
-			private void toBack() {
-				// TODO Auto-generated method stub
-				
+				RegisterMenu frame = new RegisterMenu();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -246,7 +258,7 @@ public class ContestantRegistrationSystem extends JFrame {
 		panel_1.add(btnBack);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(519, 24, 732, 482);
+		scrollPane.setBounds(519, 24, 732, 515);
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
@@ -285,11 +297,41 @@ public class ContestantRegistrationSystem extends JFrame {
 		btn_Refund.setBounds(272, 494, 165, 37);
 		panel_1.add(btn_Refund);
 		
+		JButton btnApply = new JButton("APPLY");
+		btnApply.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+				File f = new File("C:\\Users\\raymo\\OneDrive\\Desktop\\Sem 2\\Programming 2\\Project\\Customer.txt");
+				if(!f.exists()) {
+					f.createNewFile();
+					}
+				FileWriter fw = new FileWriter(f.getAbsoluteFile());
+				BufferedWriter bw = new BufferedWriter(fw);
+				
+				for (int i=0; i<table.getRowCount(); i++) {
+					for (int j=0; j<table.getColumnCount(); j++) {
+						bw.write(table.getModel().getValueAt(i, j) + "  ");
+						}
+					bw.write("\n________\n");
+					}
+					bw.close();
+					fw.close();
+					JOptionPane.showMessageDialog(null, "Data Exported");
+				}
+				catch(Exception ex) {
+					ex.printStackTrace();
+				}
+			}
+		});
+		btnApply.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+		btnApply.setBounds(1086, 552, 165, 37);
+		panel_1.add(btnApply);
+		
 		
 		
 		
 
 
 	}
-
 }

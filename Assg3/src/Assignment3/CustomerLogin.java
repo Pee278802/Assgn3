@@ -49,7 +49,6 @@ public class CustomerLogin extends JFrame {
 	 */
 	public CustomerLogin() {
 		setForeground(Color.BLUE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\AZMAN 2021\\KELAS A202\\STIA1123 C\\EXERCISES\\GUI Registration System\\src\\registration_system\\uum.png"));
 		setTitle("Pro MotorSport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 759, 600); //set for 0,0,1400,800
@@ -107,8 +106,7 @@ public class CustomerLogin extends JFrame {
 		UserNameTextField.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		UserNameTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String userName = "Lengzai";
-				UserNameTextField.setText(userName);
+
 			}
 		});
 		UserNameTextField.setBounds(348, 158, 357, 53);
@@ -119,8 +117,6 @@ public class CustomerLogin extends JFrame {
 		PasswordTextField.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		PasswordTextField.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String userPswd = "aby123";
-				PasswordTextField.setText(userPswd);
 			}
 		});
 		PasswordTextField.setColumns(10);
@@ -132,13 +128,12 @@ public class CustomerLogin extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
-					if(UserNameTextField.getText().equals("Lengzai") && PasswordTextField.getText().equals("123abc")) {
+					if(UserNameTextField.getText().equals("ShuaiGe") && PasswordTextField.getText().equals("123abc")) {
 						JOptionPane.showMessageDialog(null, "Login Succesful");
-						
-						//RegistrationSystem RegSys = new RegistrationSystem(); //calling another frame/window
-							Home frame = new Home();
-							frame.setModalExclusionType(null);
-				            frame.setVisible(true);
+						CustomerSystem frame = new CustomerSystem();
+						frame.setVisible(true);
+						dispose();
+
 				            dispose(); //login frame will disappear
 					}else
 						JOptionPane.showMessageDialog(null, "Please enter the right username and password");
@@ -166,9 +161,9 @@ public class CustomerLogin extends JFrame {
 		JButton BackButton = new JButton("BACK");
 		BackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				CustomerRegisterMenu frame = new CustomerRegisterMenu();
+				Login frame = new Login();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		BackButton.setFont(new Font("Tahoma", Font.BOLD, 20));

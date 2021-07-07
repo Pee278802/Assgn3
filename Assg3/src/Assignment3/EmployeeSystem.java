@@ -9,6 +9,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -89,7 +91,7 @@ public class EmployeeSystem extends JFrame {
 		lbl_Salary.setBounds(12, 266, 133, 31);
 		panel.add(lbl_Salary);
 		
-		JLabel lblNewLabel = new JLabel("New label");
+		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBounds(585, 90, 175, 191);
 		panel.add(lblNewLabel);
 		
@@ -98,6 +100,7 @@ public class EmployeeSystem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				EmployeeManagement frame = new EmployeeManagement();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnEmployeeManagement.setBounds(12, 342, 267, 40);
@@ -109,6 +112,7 @@ public class EmployeeSystem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Finance frame = new Finance();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnFinance.setBounds(291, 342, 180, 40);
@@ -118,40 +122,43 @@ public class EmployeeSystem extends JFrame {
 		JButton btnNewButton_1_1 = new JButton("Log out");
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-				EmployeeLogin frame = new EmployeeLogin();
-				frame.setVisible(true);
+				if (JOptionPane.showConfirmDialog(null, "Confirm if you want to log out", "Customer System", 
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+					EmployeeLogin frame = new EmployeeLogin();
+					frame.setVisible(true);
+					dispose();
+				}
 			}
 		});
 		btnNewButton_1_1.setBounds(674, 342, 115, 40);
 		panel.add(btnNewButton_1_1);
 		btnNewButton_1_1.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 20));
 		
-		JLabel lbl_Name_1 = new JLabel("");
+		JLabel lbl_Name_1 = new JLabel("Lengzai");
 		lbl_Name_1.setForeground(new Color(176, 224, 230));
 		lbl_Name_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lbl_Name_1.setBounds(200, 90, 133, 31);
+		lbl_Name_1.setBounds(200, 90, 187, 31);
 		panel.add(lbl_Name_1);
 		
-		JLabel lbl_ContactNo_1 = new JLabel("");
+		JLabel lbl_ContactNo_1 = new JLabel("011-1233123123");
 		lbl_ContactNo_1.setForeground(new Color(176, 224, 230));
 		lbl_ContactNo_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lbl_ContactNo_1.setBounds(200, 134, 133, 31);
+		lbl_ContactNo_1.setBounds(200, 134, 205, 31);
 		panel.add(lbl_ContactNo_1);
 		
-		JLabel lbl_ICNo_1 = new JLabel("");
+		JLabel lbl_ICNo_1 = new JLabel("001223-04-2313");
 		lbl_ICNo_1.setForeground(new Color(176, 224, 230));
 		lbl_ICNo_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		lbl_ICNo_1.setBounds(200, 178, 133, 31);
+		lbl_ICNo_1.setBounds(200, 178, 187, 31);
 		panel.add(lbl_ICNo_1);
 		
-		JLabel lbl_Position_1 = new JLabel("");
+		JLabel lbl_Position_1 = new JLabel("Clerk");
 		lbl_Position_1.setForeground(new Color(176, 224, 230));
 		lbl_Position_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lbl_Position_1.setBounds(200, 222, 133, 31);
 		panel.add(lbl_Position_1);
 		
-		JLabel lbl_Salary_1 = new JLabel("");
+		JLabel lbl_Salary_1 = new JLabel("2000.00");
 		lbl_Salary_1.setForeground(new Color(176, 224, 230));
 		lbl_Salary_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		lbl_Salary_1.setBounds(200, 266, 133, 31);
@@ -162,6 +169,7 @@ public class EmployeeSystem extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				AdvertisementAndMarketing window = new AdvertisementAndMarketing();
 				window.setVisible(true);
+				dispose();
 			}
 		});
 		btnAdvertisment.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 20));

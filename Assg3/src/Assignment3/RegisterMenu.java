@@ -15,7 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class CustomerRegisterMenu extends JFrame{
+public class RegisterMenu extends JFrame{
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class CustomerRegisterMenu extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CustomerRegisterMenu frame = new CustomerRegisterMenu();
+					RegisterMenu frame = new RegisterMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class CustomerRegisterMenu extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public CustomerRegisterMenu() {
+	public RegisterMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 456, 294);
 		contentPane = new JPanel();
@@ -52,22 +52,24 @@ public class CustomerRegisterMenu extends JFrame{
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnAudience = new JButton("AUDIENCE");
-		btnAudience.addActionListener(new ActionListener() {
+		JButton btnAdmin = new JButton("EMPLOYEE");
+		btnAdmin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AudienceRegistrationSystem frame = new AudienceRegistrationSystem();
+				EmployeeRegistrationSystem frame = new EmployeeRegistrationSystem();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
-		btnAudience.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
-		btnAudience.setBounds(12, 79, 183, 56);
-		panel.add(btnAudience);
+		btnAdmin.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		btnAdmin.setBounds(12, 79, 183, 56);
+		panel.add(btnAdmin);
 		
-		JButton btnContestant = new JButton("CONTESTANT");
+		JButton btnContestant = new JButton("CUSTOMER");
 		btnContestant.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ContestantRegistrationSystem frame = new ContestantRegistrationSystem();
+				CustomerRegistrationSystem frame = new CustomerRegistrationSystem();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnContestant.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));

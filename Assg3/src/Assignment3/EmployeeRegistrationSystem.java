@@ -26,15 +26,20 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.awt.event.ActionEvent;
 
-public class AudienceRegistrationSystem extends JFrame{
+public class EmployeeRegistrationSystem extends JFrame{
 
 	private JPanel contentPane;
 	private JTextField textField_Name;
 	private JTextField textField_MobileNo;
 	private JTable table;
 	private JTextField textField_ICNo;
+	private JTextField textField_Username;
+	private JTextField textField_Password;
 	/**
 	 * Launch the application.
 	 */
@@ -42,7 +47,7 @@ public class AudienceRegistrationSystem extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AudienceRegistrationSystem frame = new AudienceRegistrationSystem();
+					EmployeeRegistrationSystem frame = new EmployeeRegistrationSystem();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +59,9 @@ public class AudienceRegistrationSystem extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	public AudienceRegistrationSystem() {
+	public EmployeeRegistrationSystem() {
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 1302, 677);
+			setBounds(100, 100, 1302, 759);
 			contentPane = new JPanel();
 			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 			setContentPane(contentPane);
@@ -65,25 +70,25 @@ public class AudienceRegistrationSystem extends JFrame{
 			JPanel panel = new JPanel();
 			panel.setForeground(new Color(128, 0, 0));
 			panel.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(32, 178, 170)));
-			panel.setBackground(new Color(255, 250, 205));
+			panel.setBackground(Color.BLUE);
 			panel.setBounds(12, 13, 1263, 75);
 			getContentPane().add(panel);
 			panel.setLayout(null);
 			
-			JLabel lblRegistration = new JLabel("Audience Registration System");
+			JLabel lblRegistration = new JLabel("EMPLOYEE REGISTRATION SYSTEM");
 			lblRegistration.setFont(new Font("Verdana", Font.BOLD, 25));
-			lblRegistration.setBounds(377, 13, 433, 49);
+			lblRegistration.setBounds(377, 13, 504, 49);
 			panel.add(lblRegistration);
 			
 			JPanel panel_1 = new JPanel();
 			panel_1.setForeground(new Color(128, 0, 0));
 			panel_1.setBorder(new MatteBorder(8, 8, 8, 8, (Color) new Color(153, 50, 204)));
-			panel_1.setBackground(new Color(192, 192, 192));
-			panel_1.setBounds(12, 91, 1263, 534);
+			panel_1.setBackground(Color.BLUE);
+			panel_1.setBounds(12, 91, 1263, 608);
 			getContentPane().add(panel_1);
 			panel_1.setLayout(null);
 			
-			JLabel lblName = new JLabel("Name");
+			JLabel lblName = new JLabel("NAME");
 			lblName.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 			lblName.setBounds(40, 29, 114, 25);
 			panel_1.add(lblName);
@@ -108,7 +113,7 @@ public class AudienceRegistrationSystem extends JFrame{
 			textField_MobileNo.setBounds(166, 91, 319, 28);
 			panel_1.add(textField_MobileNo);
 			
-			JLabel lblIC = new JLabel("IC No");
+			JLabel lblIC = new JLabel("IC NO");
 			lblIC.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 			lblIC.setBounds(40, 197, 114, 25);
 			panel_1.add(lblIC);
@@ -124,23 +129,12 @@ public class AudienceRegistrationSystem extends JFrame{
 			panel_1.add(comboBox_Gender);
 			
 			JCheckBox chckbx_TermAndConditions = new JCheckBox("Accept Term And Conditions.");
-			chckbx_TermAndConditions.setBounds(40, 398, 195, 25);
+			chckbx_TermAndConditions.setBounds(28, 436, 195, 25);
 			panel_1.add(chckbx_TermAndConditions);
 			
 			JTextPane textPane_Address = new JTextPane();
 			textPane_Address.setBounds(164, 235, 319, 105);
 			panel_1.add(textPane_Address);
-			
-			JLabel lblFee = new JLabel("FEE (RM)");
-			lblFee.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			lblFee.setBounds(40, 352, 114, 25);
-			panel_1.add(lblFee);
-			
-			JLabel lblFee_1 = new JLabel("");
-			lblFee_1.setText(Integer.toString(499));
-			lblFee_1.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			lblFee_1.setBounds(164, 353, 114, 25);
-			panel_1.add(lblFee_1);
 			
 			JButton btnReset = new JButton("RESET");
 			btnReset.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
@@ -151,10 +145,10 @@ public class AudienceRegistrationSystem extends JFrame{
 						textField_ICNo.setText("");
 						comboBox_Gender.setSelectedItem("Select gender");
 						textPane_Address.setText("");
-						lblFee_1.setText(" ");		
+						textField_Username.setText(" ");		
 				}
 			});
-			btnReset.setBounds(40, 432, 165, 37);
+			btnReset.setBounds(40, 496, 165, 37);
 			panel_1.add(btnReset);
 			
 			JButton btnSubmit = new JButton("SUBMIT");		
@@ -169,7 +163,7 @@ public class AudienceRegistrationSystem extends JFrame{
 									textField_ICNo.getText(),
 									comboBox_Gender.getSelectedItem(),
 									textPane_Address.getText(),
-									lblFee_1.getText(),
+									textField_Username.getText(),
 							});
 							
 						}else {
@@ -178,35 +172,27 @@ public class AudienceRegistrationSystem extends JFrame{
 						}
 			}else if (e.getSource() == btnReset) {
 		};
-					
-
-				
 
 				}});
 				
 			btnSubmit.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			btnSubmit.setBounds(272, 484, 165, 37);
+			btnSubmit.setBounds(272, 558, 165, 37);
 			panel_1.add(btnSubmit);
 			
 			JButton btnBack = new JButton("BACK");
 			btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					dispose();
-					CustomerRegisterMenu frame = new CustomerRegisterMenu();
+					RegisterMenu frame = new RegisterMenu();
 					frame.setVisible(true);
-				}
-
-				private void toBack() {
-					// TODO Auto-generated method stub
-					
+					dispose();
 				}
 			});
 			btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			btnBack.setBounds(40, 484, 165, 37);
+			btnBack.setBounds(40, 558, 165, 37);
 			panel_1.add(btnBack);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(519, 24, 732, 482);
+			scrollPane.setBounds(519, 24, 732, 524);
 			panel_1.add(scrollPane);
 			
 			table = new JTable();
@@ -214,7 +200,7 @@ public class AudienceRegistrationSystem extends JFrame{
 				new Object[][] {
 				},
 				new String[] {
-					"NAME", "MOBILE NO", "GENDER", "IC No", "ADDRESS", "FEE"
+					"NAME", "MOBILE NO", "GENDER", "IC No", "ADDRESS", "USERNAME"
 				}
 			));
 			scrollPane.setViewportView(table);
@@ -224,26 +210,77 @@ public class AudienceRegistrationSystem extends JFrame{
 			textField_ICNo.setBounds(164, 197, 319, 28);
 			panel_1.add(textField_ICNo);
 			
-			JButton btn_Refund = new JButton("REFUND");
-			btn_Refund.addActionListener(new ActionListener() {
+			JButton btn_Delete = new JButton("DELETE");
+			btn_Delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					DefaultTableModel model = (DefaultTableModel)table.getModel();
 					if (table.getRowCount()==0) {
-						JOptionPane.showMessageDialog(null, "No data can be refunded",
+						JOptionPane.showMessageDialog(null, "No data can be deleted",
 										"Membership Management System", JOptionPane.OK_OPTION);
 					} else if(table.getSelectedRow() != -1) {
 			               // remove selected row from the model
 			               model.removeRow(table.getSelectedRow());
-			               JOptionPane.showMessageDialog(null, "Refund successfully");
+			               JOptionPane.showMessageDialog(null, "Deleted successfully");
 					}else {
-						JOptionPane.showMessageDialog(null, "Please select a data to refund",
+						JOptionPane.showMessageDialog(null, "Please select a data to delete",
 								"Membership Management System", JOptionPane.OK_OPTION);
 					}
 				}
 			});
-			btn_Refund.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-			btn_Refund.setBounds(272, 432, 165, 37);
-			panel_1.add(btn_Refund);
+			btn_Delete.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+			btn_Delete.setBounds(272, 496, 165, 37);
+			panel_1.add(btn_Delete);
+			
+			JLabel lblUsername = new JLabel("USERNAME");
+			lblUsername.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+			lblUsername.setBounds(40, 354, 114, 25);
+			panel_1.add(lblUsername);
+			
+			JLabel lblPassword = new JLabel("PASSWORD");
+			lblPassword.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+			lblPassword.setBounds(40, 402, 114, 25);
+			panel_1.add(lblPassword);
+			
+			textField_Username = new JTextField();
+			textField_Username.setColumns(10);
+			textField_Username.setBounds(164, 354, 319, 28);
+			panel_1.add(textField_Username);
+			
+			textField_Password = new JTextField();
+			textField_Password.setColumns(10);
+			textField_Password.setBounds(164, 402, 319, 28);
+			panel_1.add(textField_Password);
+			
+			JButton btnUpload = new JButton("UPLOAD");
+			btnUpload.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					try {
+					File f = new File("C:\\Users\\raymo\\OneDrive\\Desktop\\Sem 2\\Programming 2\\Project\\Employee.txt");
+					if(!f.exists()) {
+						f.createNewFile();
+						}
+					FileWriter fw = new FileWriter(f.getAbsoluteFile());
+					BufferedWriter bw = new BufferedWriter(fw);
+					
+					for (int i=0; i<table.getRowCount(); i++) {
+						for (int j=0; j<table.getColumnCount(); j++) {
+							bw.write(table.getModel().getValueAt(i, j) + "  ");
+							}
+						bw.write("\n________\n");
+						}
+						bw.close();
+						fw.close();
+						JOptionPane.showMessageDialog(null, "Data Exported");
+					}
+					catch(Exception ex) {
+						ex.printStackTrace();
+					}
+				}
+			});
+			btnUpload.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
+			btnUpload.setBounds(1086, 558, 165, 37);
+			panel_1.add(btnUpload);
 
 			
 

@@ -125,15 +125,9 @@ public class Finance extends JFrame{
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				this.toBack();
-				setVisible(false);
-				new EmployeeManagement().toFront();
-				new EmployeeManagement().setState(java.awt.Frame.NORMAL);
-			}
-
-			private void toBack() {
-				// TODO Auto-generated method stub
-				
+				EmployeeSystem frame = new EmployeeSystem();
+				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));

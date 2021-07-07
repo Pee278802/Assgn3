@@ -18,6 +18,9 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.awt.event.ActionEvent;
 
@@ -102,12 +105,26 @@ public class AdvertisementAndMarketing extends JFrame{
 		lbl_Start.setBounds(673, 60, 80, 29);
 		panel.add(lbl_Start);
 		
+		JLabel lbl_Fee1 = new JLabel("");
+		lbl_Fee1.setForeground(Color.CYAN);
+		lbl_Fee1.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
+		lbl_Fee1.setBounds(783, 150, 195, 29);
+		panel.add(lbl_Fee1);
+		
 		JComboBox comboBox_Method = new JComboBox();
+		comboBox_Method.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(comboBox_Method.getSelectedItem() == "Social media advertising (Facebook, Instagram, Twitter and Youtube ads)") {
+					lbl_Fee1.setText("100000");
+				}else if (comboBox_Method.getSelectedItem() =="Billboard advertising (Malaysia)") {
+					lbl_Fee1.setText("200000");
+				}else if (comboBox_Method.getSelectedItem() == "Spokeman (Kris Wu & Vin Diesel)") {
+					lbl_Fee1.setText("1050000");
+				}
+			}
+		});
 		comboBox_Method.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		comboBox_Method.setModel(new DefaultComboBoxModel(new String[] {"Select Method", "Social media advertising (Facebook, Instagram, Twitter and Youtube ads)", "Billboard advertising (Malaysia)", "Spokeman (Kris Wu & Vin Diesel)"}));
-		String m1 = "Social media advertising (Facebook, Instagram, Twitter and Youtube ads)";
-		String m2 = "Billboard advertising (Malaysia)";
-		String m3 = "Spokeman (Kris Wu & Vin Diesel)";
 		comboBox_Method.setBounds(169, 60, 331, 29);
 		panel.add(comboBox_Method);
 		
@@ -127,20 +144,12 @@ public class AdvertisementAndMarketing extends JFrame{
 		textField_End.setBounds(783, 108, 195, 29);
 		panel.add(textField_End);
 		
-		JButton btnDone = new JButton("DONE");
-		btnDone.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnDone.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
-		btnDone.setBounds(793, 530, 185, 47);
-		panel.add(btnDone);
-		
 		JButton btnBack = new JButton("BACK");
 		btnBack.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					EmployeeSystem frame = new EmployeeSystem();
+					frame.setVisible(true);
 					dispose();
-
 				}
 			});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
@@ -152,17 +161,6 @@ public class AdvertisementAndMarketing extends JFrame{
 		lbl_Fee.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
 		lbl_Fee.setBounds(673, 149, 110, 29);
 		panel.add(lbl_Fee);
-		
-		JLabel lbl_Fee1 = new JLabel("");
-		double f1 = 1000000;
-		double f2 = 2000000;
-		double f3 = 5000000;
-		String Fee = String.valueOf(f1);
-		lbl_Fee1.setText((Fee) + "0"); 
-		lbl_Fee1.setForeground(Color.CYAN);
-		lbl_Fee1.setFont(new Font("Trebuchet MS", Font.BOLD, 24));
-		lbl_Fee1.setBounds(783, 150, 195, 29);
-		panel.add(lbl_Fee1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(12, 254, 966, 263);
@@ -178,7 +176,7 @@ public class AdvertisementAndMarketing extends JFrame{
 			new Object[][] {
 			},
 			new String[] {
-				"Method", "Start", "End",
+				"Method", "Start", "End", "Fee"
 			}
 		));
 		scrollPane_1.setViewportView(table);
@@ -190,6 +188,7 @@ public class AdvertisementAndMarketing extends JFrame{
 				textField_Description.setText("");
 				textField_Start.setText("");
 				textField_End.setText("");
+				lbl_Fee1.setText("");
 			}
 		});
 		btnNewButton.setFont(new Font("Trebuchet MS", Font.ITALIC, 20));
@@ -204,19 +203,74 @@ public class AdvertisementAndMarketing extends JFrame{
 								comboBox_Method.getSelectedItem(),
 								textField_Start.getText(),
 								textField_End.getText(),
+								lbl_Fee1.getText(),
 
 				});
-		
-				if (table.getSelectedRow() == -1) {
-						if (table.getRowCount() == 0) {
-								JOptionPane.showMessageDialog(null, "Advertisement and Marketing has been set", null, JOptionPane.OK_OPTION, null);
-					}
-				}
+
 				}
 		});
+		
+		JButton btnDone = new JButton("DONE");
+		btnDone.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+						if (table.getRowCount() != 0) {
+								JOptionPane.showMessageDialog(null, "Advertisement and Marketing has been set!");
+								try {
+									File f = new File("C:\\Users\\raymo\\OneDrive\\Desktop\\Sem 2\\Programming 2\\Project\\Advertisement.txt");
+									if(!f.exists()) {
+										f.createNewFile();
+										}
+									FileWriter fw = new FileWriter(f.getAbsoluteFile());
+									BufferedWriter bw = new BufferedWriter(fw);
+									
+									for (int i=0; i<table.getRowCount(); i++) {
+										for (int j=0; j<table.getColumnCount(); j++) {
+											bw.write(table.getModel().getValueAt(i, j) + "  ");
+											}
+										bw.write("\n________\n");
+										}
+										bw.close();
+										fw.close();
+										JOptionPane.showMessageDialog(null, "Data Exported");
+									}
+									catch(Exception ex) {
+										ex.printStackTrace();
+									}
+						} else if (table.getRowCount() == 0) {
+							JOptionPane.showMessageDialog(null, "No data has been set!");
+						}
+						
+				}
+		});
+		btnDone.setFont(new Font("Trebuchet MS", Font.BOLD, 25));
+		btnDone.setBounds(793, 530, 185, 47);
+		panel.add(btnDone);
 
 		btnApply.setFont(new Font("Trebuchet MS", Font.ITALIC, 20));
 		btnApply.setBounds(846, 205, 132, 36);
 		panel.add(btnApply);
+		
+		JButton btnDelete = new JButton("DELETE");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DefaultTableModel model = (DefaultTableModel)table.getModel();
+				if (table.getRowCount()==0) {
+					JOptionPane.showMessageDialog(null, "No data can be delete",
+									"Membership Management System", JOptionPane.OK_OPTION);
+				} else if(table.getSelectedRow() != -1) {
+		               // remove selected row from the model
+		               model.removeRow(table.getSelectedRow());
+		               JOptionPane.showMessageDialog(null, "Delete successfully");
+				}else {
+					JOptionPane.showMessageDialog(null, "Please select a data to delete",
+							"Membership Management System", JOptionPane.OK_OPTION);
+				}
+			}
+		});
+		
+		btnDelete.setFont(new Font("Trebuchet MS", Font.ITALIC, 20));
+		btnDelete.setBounds(501, 205, 132, 36);
+		panel.add(btnDelete);
 	}
 }

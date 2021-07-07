@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -48,6 +49,7 @@ public class EmployeeLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public EmployeeLogin() {
+		
 		setForeground(Color.BLUE);
 		setTitle("Pro MotorSport");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,6 +58,7 @@ public class EmployeeLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.BLUE);
@@ -116,12 +119,6 @@ public class EmployeeLogin extends JFrame {
 		
 		PasswordTextField = new JTextField();
 		PasswordTextField.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		PasswordTextField.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String userPswd = "abc123";
-				PasswordTextField.setText(userPswd);
-			}
-		});
 		PasswordTextField.setColumns(10);
 		PasswordTextField.setBounds(348, 240, 357, 53);
 		panel.add(PasswordTextField);
@@ -130,11 +127,11 @@ public class EmployeeLogin extends JFrame {
 		LoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					
 					if(UserNameTextField.getText().equals("Lengzai") && PasswordTextField.getText().equals("123abc")) {
 						JOptionPane.showMessageDialog(null, "Login Succesful");
 						EmployeeSystem frame = new EmployeeSystem();
 						frame.setVisible(true);
+						dispose();
 					}else
 						JOptionPane.showMessageDialog(null, "Please enter the right username and password");
 					
@@ -161,18 +158,15 @@ public class EmployeeLogin extends JFrame {
 		JButton BackButton = new JButton("BACK");
 		BackButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				this.toBack();
-				setVisible(false);
-				new Login().toFront();
-				new Login().setState(java.awt.Frame.NORMAL);
+				Login frame = new Login();
+				frame.setVisible(true);
+				dispose();
 
-			}
-
-			private void toBack() {
 			}
 		});
 		BackButton.setFont(new Font("Tahoma", Font.BOLD, 20));
 		BackButton.setBounds(249, 467, 187, 30);
 		panel.add(BackButton);
+	
 	}
 }

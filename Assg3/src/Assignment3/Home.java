@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
 
-public class Home extends JFrame{
+public class Home{
 
 	JFrame frmProMotorsport;
 
@@ -49,7 +49,6 @@ public class Home extends JFrame{
 		frmProMotorsport = new JFrame();
 		frmProMotorsport.setTitle("Pro MotorSport");
 		frmProMotorsport.getContentPane().setBackground(new Color(224, 255, 255));
-		setTitle("Pro MotorSport");
 		frmProMotorsport.setBounds(100, 100, 867, 513);
 		frmProMotorsport.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmProMotorsport.getContentPane().setLayout(null);
@@ -72,13 +71,13 @@ public class Home extends JFrame{
 		panel_1.setBounds(12, 388, 825, 65);
 		frmProMotorsport.getContentPane().add(panel_1);
 		
-		JButton btn_CompanyDetail = new JButton("COMPANY DETAIL");
+		JButton btn_CompanyDetail = new JButton("ABOUT US");
 		btn_CompanyDetail.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btn_CompanyDetail.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				CompanyDetail frame = new CompanyDetail();
+				frame.setModalExclusionType(null);
 				frame.setVisible(true);
-				
 			}
 		});
 		btn_CompanyDetail.setBounds(12, 13, 180, 39);
@@ -87,10 +86,9 @@ public class Home extends JFrame{
 		JButton btn_Register = new JButton("REGISTER");
 		btn_Register.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CustomerRegisterMenu frame = new CustomerRegisterMenu();
+				RegisterMenu frame = new RegisterMenu();
 				frame.setModalExclusionType(null);
 	            frame.setVisible(true);
-	            dispose();
 			}
 		});
 		btn_Register.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -101,6 +99,7 @@ public class Home extends JFrame{
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Login frame = new Login();
+				frame.setModalExclusionType(null);
 				frame.setVisible(true);
 			}
 		});

@@ -62,6 +62,7 @@ public class Login extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				EmployeeLogin frame = new EmployeeLogin();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnEmployee.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
@@ -73,6 +74,7 @@ public class Login extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				CustomerLogin frame = new CustomerLogin();
 				frame.setVisible(true);
+				dispose();
 			}
 		});
 		btnCustomer.setFont(new Font("Trebuchet MS", Font.BOLD | Font.ITALIC, 25));
@@ -83,7 +85,6 @@ public class Login extends JFrame{
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-
 			}
 		});
 		btnBack.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
