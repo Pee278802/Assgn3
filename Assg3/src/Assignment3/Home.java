@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.JEditorPane;
+import javax.swing.ImageIcon;
 
 public class Home{
 
@@ -54,7 +55,7 @@ public class Home{
 		frmProMotorsport.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(72, 61, 139));
+		panel.setBackground(Color.BLACK);
 		panel.setBounds(12, 13, 825, 65);
 		frmProMotorsport.getContentPane().add(panel);
 		panel.setLayout(null);
@@ -67,7 +68,7 @@ public class Home{
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
-		panel_1.setBackground(new Color(72, 61, 139));
+		panel_1.setBackground(Color.BLACK);
 		panel_1.setBounds(12, 388, 825, 65);
 		frmProMotorsport.getContentPane().add(panel_1);
 		
@@ -122,16 +123,13 @@ public class Home{
 		
 		JPanel panel_1_1 = new JPanel();
 		panel_1_1.setBackground(new Color(72, 61, 139));
-		panel_1_1.setBounds(12, 91, 825, 284);
+		panel_1_1.setBounds(0, 0, 849, 466);
 		frmProMotorsport.getContentPane().add(panel_1_1);
 		panel_1_1.setLayout(null);
 		
-		JEditorPane dtrpnEntry = new JEditorPane();
-		dtrpnEntry.setBackground(new Color(0, 139, 139));
-		dtrpnEntry.setForeground(new Color(255, 248, 220));
-		dtrpnEntry.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
-		dtrpnEntry.setText("!! 2021 Entry Announcement !!\r\nFeathers Motorsport announce their full season GTH entry into the GT Cup Championship with drivers James Guess and James Hilliard for 2021.\r\nThe team spent 2019 testing and learning their car before competing in a round with us at Donington in September.  They enjoyed it so much the choice of championship   for 2021 was never in question!\r\nSimon Rose, Team Manager said 'Feathers Motor Sport is a relatively new small team. Nonetheless, the team loves a challenge, so we cannot wait for the season to start'");
-		dtrpnEntry.setBounds(0, 0, 825, 284);
-		panel_1_1.add(dtrpnEntry);
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\raymo\\OneDrive\\Desktop\\105921.jpg"));
+		label.setBounds(0, 0, 849, 466);
+		panel_1_1.add(label);
 	}
 }
